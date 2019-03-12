@@ -1,0 +1,26 @@
+.ulnone{
+    margin :0px;
+    padding:0px;
+    list-style:none;
+}
+.nav-content {
+    position: absolute;
+    top: 80px;
+    overflow: hidden;
+    background-color: #121618;
+    left:1150px;
+}
+.nav-content a:hover {
+    color: #fac564;
+
+}
+.nav-content a {
+    color: rgba(255, 255, 255, 0.7);
+    
+}
+ul li ul li {
+    display:none;
+}
+ul li:hover ul li {
+    display: block;
+}
