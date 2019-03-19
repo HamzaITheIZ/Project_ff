@@ -1,0 +1,100 @@
+body{
+    background-image:url('../loginStyle/welcome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center ;
+    background-attachment: fixed;
+}
+
+.main-section{
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 0;
+}
+.modal-content{
+    background-color: #DD7D1C;
+    opacity: .9;
+    padding: 0 18px;
+    border-radius: 40px 0 40px 0;
+}
+    
+    .user-img img{
+        width: 120px;
+        height: 120px;
+    }
+    .user-img{
+        margin-top: -60px;
+        margin-bottom: 45px;
+    }
+    .form-group{
+        margin-bottom: 25px;
+    }
+    .form-group input{
+        height: 42px;
+        border-radius: 5px;
+        border: 0;
+        font-size: 18px;
+        letter-spacing: 2px;
+        padding-left: 54px;
+    }
+    .form-group0::before{
+        font-family: 'Font Awesome\ 5 free';
+        content: '\f007';
+        position: absolute;
+        font-size: 22px;
+        left: 28px;
+        padding-top: 4px;
+        /*color: black;*/
+
+    }
+      .form-group01::before{
+        font-family: 'Font Awesome\ 5 free';
+        content: '\f1fa';
+        position: absolute;
+        font-size: 22px;
+        left: 28px;
+        padding-top: 4px;
+        /*color: black;*/
+
+    }
+    .form-group:last-of-type::before{
+        content: "\f023";
+    }
+      .form-group1::before{
+        font-family: 'Font Awesome\ 5 free';
+        content: '\f084';
+        position: absolute;
+        font-size: 22px;
+        left: 28px;
+        padding-top: 4px;
+        /*color: black;*/
+
+    }
+    .form-group:last-of-type::before{
+        content: "\f084";
+    }
+    form-input button{
+        width: 40%;
+        margin: 5px 0 25px;;
+    }
+    .btn-success{
+        background-color:#121618;
+        font-size: 19px;
+        border-radius: 5px;
+        padding: 7px 14px;
+        border: 1px solid #DD7D1C;
+        color: white;
+    }
+      .btn-success:hover{
+        background-color:#DD7D1C;
+        font-size: 19px;
+        border-radius: 5px;
+        padding: 7px 14px;
+        border: 1px solid white;
+    }
+    .forgot{
+        padding: 10px 0 25px;
+    }
+    .forgot a{
+        color: #121618;
+    }
