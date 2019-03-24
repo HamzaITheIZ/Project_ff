@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 
 <html>
@@ -36,7 +38,7 @@
                     </div>
                     <div class="col-12 forgot">
                         <a href="#">mot de passe oublié?</a> <br>                       
-                        <a href="#">nouveau client ?</a>
+                        <a href="signup.php">nouveau client ?</a>
 
                     </div>
                 </div>
