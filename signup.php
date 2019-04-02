@@ -1,3 +1,24 @@
+<?php
+    include_once './connexion/Connexion.php';
+    include_once './services/ClientService.php';
+    
+    
+    if(isset($_POST['inscr'])){
+        echo "<script>alert('true');</script>";
+        $userName = htmlspecialchars($_POST['user_name']);        
+        $userEmail = htmlspecialchars($_POST['user_email']);
+        $userPassword = htmlspecialchars($_POST['user_password']);
+        
+        $cs = new ClientService();
+        $cl = new Client(0, $userName, $userEmail, $userPassword);
+        $cs->create($cl);
+        header("Location:login.php");
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -75,12 +96,12 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-4 espcae text-right" style="padding-top:50px;">
-                    <img class="hy-img" src="loginStyle/hysTextLogo-1.png">
+                    <a href="index.php"><img class="hy-img" src="loginStyle/hysTextLogo-1.png"></a>
                 </div>
                 <div class="col-sm-0 espace" style="border-left: black 5px solid "></div>
                 <div class="col-md-5 modal-content espace">
                     <div class=" form-input">
-                        <form id="user_form" onsubmit="return false">
+                        <form id="user_form" method="POST" action="signup.php" enctype="multipart/form-data">
                             <div class="form-group form-group0">
                                 <input class="form-control" type="text" id="user_name" name="user_name" placeholder="votre nom d'utilisateur">
                                 <small id="u_error" class="form-text text-muted"></small>
@@ -92,10 +113,10 @@
                                 <input class="form-control" type="password" id="user_password" name="user_password" placeholder="votre mot de passe">
                             </div>
                             <div class="form-group form-group1">
-                                <input class="form-control" type="password" id="pass2" name="pass2" placeholder="confirmer mot de passe">
+                                <input class="form-control" type="password" id="user_password2" name="user_password2" placeholder="confirmer mot de passe">
                             </div>
                             <div class="text-right" style="padding-bottom: 10px;">
-                                <button type="submit" class=" btn btn-success " style="margin: auto;">Inscription</button>
+                                <button type="submit" class=" btn btn-success " id="inscr" name="inscr" style="margin: auto;">Inscription</button>
                             </div>
                         </form>
                     </div>

@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+include 'connexion/Connexion.php';
+
+//if($_SESSION['email'] == '')
+//    header("Location:login.php");
+//echo "email is  " . $_SESSION["email"] . ".<br>";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,7 +39,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,11 +47,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="mainpage.php" class="nav-link">Accueil</a></li>
+                        <li class="nav-item active"><a href="index.php" class="nav-link">Accueil</a></li>
                         <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
                         <li class="nav-item"><a class="nav-link" href="panier.php">Panier</a></li>
-                        <li class="nav-item active"><a href="about.php" class="nav-link">A Propos</a></li>
-                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="about.php" class="nav-link">A Propos</a></li>
+                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>     
+                        <?php if (empty($_SESSION['email'])) {
+                            ?>
+                            <li class="nav-item"><a href="login.php" class="nav-link" id="loginItem" name="loginItem" >Login</a></li>
+                            <?php
+                        } else {
+                            ?>
+                            <li class="nav-item"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
+                        <?php } ?> 
+
                     </ul>
                 </div>
             </div>

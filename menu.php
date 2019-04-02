@@ -1,7 +1,16 @@
+<?php
+session_start();
+
+include 'connexion/Connexion.php';
+
+//if($_SESSION['email'] == '')
+//    header("Location:login.php");
+//echo "email is  " . $_SESSION["email"] . ".<br>";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Pizza - Free Bootstrap 4 Template by Colorlib</title>
+        <title>Hy's Menu</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -27,10 +36,16 @@
         <link rel="stylesheet" href="css/flaticon.css">
         <link rel="stylesheet" href="css/icomoon.css">
         <link rel="stylesheet" href="css/style.css">
+
+
+        <script src="scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="scripts/plat.js" type="text/javascript"></script>        
+        <script src="scripts/panier.js" type="text/javascript"></script>
+
+
     </head>
     <body>
-        
-        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,11 +53,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="mainpage.php" class="nav-link">Accueil</a></li>
+                        <li class="nav-item "><a href="index.php" class="nav-link">Accueil</a></li>
                         <li class="nav-item active"><a href="menu.php" class="nav-link">Menu</a></li>
-                        <li class="nav-item"><a href="panier.php" class="nav-link">Panier</a></li>
+                        <li class="nav-item"><a class="nav-link" href="panier.php">Panier</a></li>
                         <li class="nav-item"><a href="about.php" class="nav-link">A Propos</a></li>
-                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>     
+                        <?php if (empty($_SESSION['email'])) {
+                            ?>
+                            <li class="nav-item"><a href="login.php" class="nav-link" id="loginItem" name="loginItem" >Login</a></li>
+                            <?php
+                        } else {
+                            ?>
+                            <li class="nav-item"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
+                        <?php } ?> 
+
                     </ul>
                 </div>
             </div>
@@ -77,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid" id="container-fluid">
                 <div class="row d-md-flex">
                     <div class="col-lg-12 ftco-animate p-md-5">
                         <div class="row">
@@ -87,11 +111,11 @@
                             <div class="col-md-4 nav-link-wrap mb-5">
                                 <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Tous</a>
-                                    <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Burger</a>
-                                    <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Pasta</a>
-                                    <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="false">Pizza</a>
-                                    <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Boisson</a>
-                                    <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Autre</a>
+                                    <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Pizza</a>
+                                    <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Pasta</a>
+                                    <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Burger</a>
+                                   <!-- <a class="nav-link" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Boisson</a>-->
+                                    <a class="nav-link" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Autre</a>
                                 </div>
                             </div>
                             <div class="col-md-4 nav-link-wrap mb-5">
@@ -102,7 +126,8 @@
                                 <div class="tab-content ftco-animate" id="v-pills-tabContent">
 
                                     <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
-                                        <div class="row">
+                                        <!--
+                                        <div class="row" >
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
                                                     <a href="#" class="menu-img img mb-4" style="background-image: url(images/pizza-1.jpg);"></a>
@@ -110,7 +135,7 @@
                                                         <h3><a href="#">Pizza</a></h3>
                                                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
                                                         <p class="price"><span>$2.90</span></p>
-                                                        <p><a href="#" class="btn btn-white btn-outline-white">Add to cart</a></p>
+                                                        <p><a href="#" class="btn btn-white btn-outline-white">Ajouter a panier</a></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,9 +162,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
 
                                     <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                                        <!--
                                         <div class="row">
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
@@ -175,9 +202,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
 
                                     <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                                       <!--
                                         <div class="row">
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
@@ -213,9 +242,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
 
                                     <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                                        <!--
                                         <div class="row">
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
@@ -251,7 +282,49 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
+                                    
+                                      <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+                                        <!--
+                                        <div class="row">
+                                            <div class="col-md-4 text-center">
+                                                <div class="menu-wrap">
+                                                    <a href="#" class="menu-img img mb-4" style="background-image: url(images/pasta-1.jpg);"></a>
+                                                    <div class="text">
+                                                        <h3><a href="#">Pasta</a></h3>
+                                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                                                        <p class="price"><span>$2.90</span></p>
+                                                        <p><a href="#" class="btn btn-white btn-outline-white">Add to cart</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <div class="menu-wrap">
+                                                    <a href="#" class="menu-img img mb-4" style="background-image: url(images/pasta-2.jpg);"></a>
+                                                    <div class="text">
+                                                        <h3><a href="#">Pasta</a></h3>
+                                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                                                        <p class="price"><span>$2.90</span></p>
+                                                        <p><a href="#" class="btn btn-white btn-outline-white">Add to cart</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <div class="menu-wrap">
+                                                    <a href="#" class="menu-img img mb-4" style="background-image: url(images/pasta-3.jpg);"></a>
+                                                    <div class="text">
+                                                        <h3><a href="#">Pasta</a></h3>
+                                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                                                        <p class="price"><span>$2.90</span></p>
+                                                        <p><a href="#" class="btn btn-white btn-outline-white">Add to cart</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        -->
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
