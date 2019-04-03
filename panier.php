@@ -173,6 +173,9 @@ and open the template in the editor.
                                         <th class="text-center">supprimer</th>
                                         </thead>
                                         <tbody class="text-center " id="contain" style="color: white;">
+                                            <tr class="text-center">
+                                                <td colspan="5"><h3 class="form-control">il n'y a pas de Plas dans le panier pour Commander</h3></td>
+                                            </tr>
                                             <!--<tr>                           
                                                 <td><img class="image" src="images/burger-1.jpg" width="50" height="50"></td>
                                                 <td>plat1</td>

@@ -110,6 +110,17 @@ $(document).ready(function () {
             })
         }
     })
+    
+        $("#quantite").keyup(function () {
+        var quantite = $(this);
+        if (isNaN(quantite.val())) {
+            alert("S'il vous plaît entrer une Quantite valide");
+            quantite.val("");
+        } else if (quantite.val() < 0) {
+            alert("Pardon ! La Quantite est un Entier Positive!");
+            quantite.val("")
+        }
+    })
 
 
     $("#commandeBtn").on("click", function () {
