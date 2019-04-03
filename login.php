@@ -59,13 +59,14 @@ include 'connexion/Connexion.php';
                                 } else {
                                     //                $q = "SELECT email,password,role FROM employe WHERE email=? and password=?";
                                     //                $stmt = $newCnx->connexion->prepare($q);
-                                    $stmt = $newCnx->connexion->prepare("SELECT username,email,password FROM client WHERE (email=? OR username=?) and password=?");
+                                    $stmt = $newCnx->connexion->prepare("SELECT id,username,email,password FROM client WHERE (email=? OR username=?) and password=?");
                                     $stmt->execute(array($email, $user, $pass));
                                     $count = $stmt->rowCount();
                                     if ($count != 0) {
                                         foreach ($stmt->fetchAll() as $row) {
                                             //$_SESSION['cin'] = $row['cin'];
                                             $_SESSION['email'] = $email;
+                                            $_SESSION['id'] = $row["id"];
                                             $_SESSION['user'] = $user;
                                             $_SESSION['pass'] = $pass;
                                             $_SESSION['check'] = 1;

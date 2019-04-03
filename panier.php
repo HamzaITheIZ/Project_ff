@@ -43,10 +43,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css">
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        
+
         <script src="scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="scripts/panier2.js" type="text/javascript"></script>
-        
+
         <style>
             .opDel:hover{
                 color: red;
@@ -58,8 +58,8 @@ and open the template in the editor.
                 color: blue;
             }
         </style>
-        
-        
+
+
     </head>
     <body>
         <?php
@@ -72,9 +72,9 @@ and open the template in the editor.
         ?>
 
 
-   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-            <div class="container">
-                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="margin-left: 355px" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
@@ -91,7 +91,7 @@ and open the template in the editor.
                             <?php
                         } else {
                             ?>
-                            <li class="nav-item"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
+                            <li class="nav-item" style="margin-left:370px;"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
                         <?php } ?> 
 
                     </ul>
@@ -144,12 +144,12 @@ and open the template in the editor.
                                     <h1>Historique</h1>
                                     <table class="table  ">
                                         <thead>
-                                        <th>plat</th>                                        
-                                        <th>date</th>
-                                        <th>prix totale</th>
+                                        <th class="text-center">N° Plas</th>                                        
+                                        <th class="text-center">date</th>
+                                        <th class="text-center">prix totale</th>
                                         </thead>
-                                        <tbody class="text-center " style="color: white;">
-                                            <tr>                           
+                                        <tbody id="get_commande">
+                                            <!--<tr>                           
                                                 <td>pizza 1</td>                                            
                                                 <td>30-03-2019 18:45</td>
                                                 <td>100dh</td>
@@ -158,7 +158,7 @@ and open the template in the editor.
                                                 <td>pizza 1</td>                                            
                                                 <td>30-03-2019 18:45</td>
                                                 <td>100dh</td>
-                                            </tr>
+                                            </tr>-->
                                         </tbody>
                                     </table>
                                 </div>
@@ -166,16 +166,14 @@ and open the template in the editor.
                                 <div class="col-md-8 pl-5" style="padding: 0 0 0 0;">
                                     <table class="table table-responsive-md table-hover" border="1">
                                         <thead style=" color: #FAC564;">
-                                            <th>photo</th>
-                                            <th>plat</th>
-                                            <th>quantité</th>
-                                            <th>prix totale</th>
-                                            <th>commander</th>                                        
-                                            <th>supprimer</th>
-                                            <th>modifer</th>
+                                        <th class="text-center">photo</th>
+                                        <th class="text-center">plat</th>
+                                        <th class="text-center">quantité</th>
+                                        <th class="text-center">prix totale</th>                                       
+                                        <th class="text-center">supprimer</th>
                                         </thead>
                                         <tbody class="text-center " id="contain" style="color: white;">
-                                            <tr>                           
+                                            <!--<tr>                           
                                                 <td><img class="image" src="images/burger-1.jpg" width="50" height="50"></td>
                                                 <td>plat1</td>
                                                 <td>2</td>              
@@ -201,12 +199,20 @@ and open the template in the editor.
                                                 <td><a href="#"><span class="fas fa-money-check-alt"></span></a></td>                                            
                                                 <td><a href="#"><span class="fas fa-trash-alt"></span></a></td>
                                                 <td><a href="#"><span class="far fa-edit"></span></a></td>
-                                            </tr>
+                                            </tr>-->
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button id="commandeBtn" class="btn btn-primary py-3 px-5">Commander</button>
                         </div>
                     </div>
                 </div>
@@ -303,5 +309,9 @@ and open the template in the editor.
         <script src="js/main.js"></script>
 
 
+        <?php
+        //Profil Form
+        include_once("./models/update_quantite.php");
+        ?>
     </body>
 </html>
