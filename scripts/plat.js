@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    alert('Hello from plat.js');
+    //alert('Hello from plat.js');
 
     $.ajax({
         url: 'control/chargePlat.php',
@@ -27,7 +27,7 @@ $(document).ready(function () {
                                     <a href="#">' + data[i].nom + '</a></h3>\n\
                                     <p>' + data[i].description + '</p>\n\
                                     <p class="price"><span>' + data[i].prix + ' dh</span></p>\n\
-                                    <p><a href="panier.php"  class="btn btn-white btn-outline-white addToCart" indice="' + data[i].id + '">Ajouter au panier</a></p>\n\
+                                    <p><a class="btn btn-white btn-outline-white addToCart" indice="' + data[i].id + '">Ajouter au panier</a></p>\n\
                                 </div>\n\
                             </div>\n\
                     </div>';

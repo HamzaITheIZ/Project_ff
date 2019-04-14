@@ -48,7 +48,7 @@ include 'connexion/Connexion.php';
                                 $pass = $_POST['pass'];
                                 
                                 
-                                 $_SESSION['check'];
+                                 $_SESSION['check'] = 0;
                                 
                                 
                                 if (empty($email)) {
@@ -65,9 +65,9 @@ include 'connexion/Connexion.php';
                                     if ($count != 0) {
                                         foreach ($stmt->fetchAll() as $row) {
                                             //$_SESSION['cin'] = $row['cin'];
-                                            $_SESSION['email'] = $email;
+                                            $_SESSION['email'] = $row["email"];
                                             $_SESSION['id'] = $row["id"];
-                                            $_SESSION['user'] = $user;
+                                            $_SESSION['user'] = $row["username"];
                                             $_SESSION['pass'] = $pass;
                                             $_SESSION['check'] = 1;
                                             //$_SESSION['role'] = $row['role'];

@@ -5,9 +5,8 @@ include 'connexion/Connexion.php';
 
 if (isset($_POST['logoutItem'])) {
     session_destroy();
-    unset($_SESSION['email']);    
+    unset($_SESSION['email']);
     unset($_SESSION['check']);
-
 }
 ?>
 
@@ -40,6 +39,9 @@ if (isset($_POST['logoutItem'])) {
         <link rel="stylesheet" href="css/flaticon.css">
         <link rel="stylesheet" href="css/icomoon.css">
         <link rel="stylesheet" href="css/style.css">
+        <script src="scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="./js/manage.js"></script>
+        <script src="scripts/panier.js" type="text/javascript"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -196,8 +198,8 @@ if (isset($_POST['logoutItem'])) {
                     </div>
                 </div>
             </div>
-            <div class="container-wrap">
-                <div class="row no-gutters d-flex">
+            <div class="container-wrap" id="hotmeals">
+                <!--<div class="row no-gutters d-flex">
                     <div class="col-lg-4 d-flex ftco-animate">
                         <div class="services-wrap d-flex">
                             <a href="#" class="img" style="background-image: url(images/pizza-1.jpg);"></a>
@@ -259,7 +261,7 @@ if (isset($_POST['logoutItem'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
 
         </section>
@@ -310,7 +312,7 @@ if (isset($_POST['logoutItem'])) {
                                 <div class="block-18 text-center">
                                     <div class="text">
                                         <div class="icon"><span class="flaticon-pizza-1"></span></div>
-                                        <strong class="number" data-number="35">0</strong>
+                                        <strong id="ps" class="number"></strong>
                                         <span>Totale de Plas</span>
                                     </div>
                                 </div>
@@ -319,7 +321,7 @@ if (isset($_POST['logoutItem'])) {
                                 <div class="block-18 text-center">
                                     <div class="text">
                                         <div class="icon"><span class="flaticon-laugh"></span></div>
-                                        <strong class="number" data-number="122">0</strong>
+                                        <strong id="cs" class="number"></strong>
                                         <span>Nombre de Clients</span>
                                     </div>
                                 </div>
@@ -328,7 +330,7 @@ if (isset($_POST['logoutItem'])) {
                                 <div class="block-18 text-center">
                                     <div class="text">
                                         <div class="icon"><span class="flaticon-chef"></span></div>
-                                        <strong class="number" data-number="10">0</strong>
+                                        <strong id="es" class="number"></strong>
                                         <span>Nombre de Employes</span>
                                     </div>
                                 </div>
@@ -337,7 +339,7 @@ if (isset($_POST['logoutItem'])) {
                                 <div class="block-18 text-center">
                                     <div class="text">
                                         <div class="icon"><span class="flaticon-medal"></span></div>
-                                        <strong class="number" data-number="264">0</strong>
+                                        <strong id="cms" class="number"></strong>
                                         <span>Nombre de Commandes</span>
                                     </div>
                                 </div>

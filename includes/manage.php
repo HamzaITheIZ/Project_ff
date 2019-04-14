@@ -16,6 +16,8 @@ class Manage {
     public function fillAnyRecord($table) {
         if ($table == "commande") {
             $sql = "SELECT C.id , COUNT(LC.nomPlat) AS 'Plas' , C.dateCommande , C.montantTotale from commande C INNER JOIN ligne_commande LC ON C.id = LC.commande WHERE C.clientCommande = " . $_SESSION["id"] . " GROUP BY C.id";
+        } else if ($table == "plat") {
+            $sql = "SELECT P.*,COUNT(P.id) AS 'nombreCommande' FROM plat P INNER JOIN ligne_commande LC on P.nom = LC.nomPlat GROUP BY P.id ORDER BY COUNT(P.id) DESC LIMIT 6";
         } else {
             $sql = "SELECT * FROM " . $table . " ";
         }
@@ -30,7 +32,7 @@ class Manage {
     }
 
     public function getSingleRecord($table, $id) {
-        if ($table = "panier") {
+        if ($table == "panier") {
             $sql = "SELECT pa.*,p.prix FROM " . $table . " pa INNER JOIN plat p ON pa.nomPlat = p.nom WHERE pa.id = ? LIMIT 1";
         } else {
             $sql = "SELECT * FROM " . $table . " WHERE id = ? LIMIT 1";
@@ -78,6 +80,7 @@ class Manage {
 
     public function addCommande($client) {
 
+        $check = 0;
         $montant = 0;
         $commande_id = null;
         $m = new Manage();
@@ -99,6 +102,7 @@ class Manage {
             $pre_stmt->bind_param("isss", $client, $date, $montant, $etat);
             $result = $pre_stmt->execute() or die($this->con->error);
             $commande_id = $pre_stmt->insert_id;
+            $check = 1;
         }
         if ($commande_id != null) {
             foreach ($rows as $rowi) {
@@ -112,13 +116,52 @@ class Manage {
             $pre_stmt->execute() or die($this->con->error);
         }
 
-        if ($result) {
+        if ($check === 1) {
             return "COMMANDE_ADDED";
         } else {
-            return 0;
+            return "EMPTY_CART";
+        }
+    }
+
+    public function getAllStat($table) {
+        $pre_stmt = $this->con->prepare("SELECT Count(*) as 'Stat' FROM " . $table);
+        $pre_stmt->execute() or die($this->con->error);
+        $result = $pre_stmt->get_result();
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+        }
+        return $row;
+    }
+
+    public function profilEdit($username, $oldpassword, $password, $id) {
+
+        $pre_stmt = $this->con->prepare("SELECT id,username,password FROM client WHERE id = ?");
+        $pre_stmt->bind_param("i", $id);
+        $pre_stmt->execute() or die($this->con->error);
+        $result = $pre_stmt->get_result();
+
+        if ($result->num_rows < 1) {
+            return "ID_NOT_MATCHED";
+        } else {
+            $row = $result->fetch_assoc();
+            if ($oldpassword === $row["password"]) {
+                //$pass_hash = password_hash($password, PASSWORD_BCRYPT, ["cost" => 8]);
+                $pre_stmt = $this->con->prepare("UPDATE client SET username = ? , password = ? WHERE id = ?");
+                $pre_stmt->bind_param("ssi", $username, $password, $id);
+                $result = $pre_stmt->execute() or die($this->con->error);
+                if ($result) {
+                    $_SESSION["user"] = $username;
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else {
+                return "PASSWORD_NOT_EXISTS";
+            }
         }
     }
 
 }
-
+//$m = new Manage();
+//print_r($m->getSingleRecord("client",7));
 ?>

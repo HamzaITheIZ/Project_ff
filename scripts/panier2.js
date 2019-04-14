@@ -3,7 +3,8 @@ $(document).ready(function () {
     var DOMAIN = "http://localhost/project_ff";
     //alert('hello from panier2.js');
 
-
+    var PrixTotale = 0;
+    PrixTotale = PrixTotale * 1;
 
     chargerPanier();
     function chargerPanier() {
@@ -16,6 +17,7 @@ $(document).ready(function () {
             success: function (data, textStatus, jqXHR) {
                 var ligne;
                 for (i = 0; i < data.length; i++) {
+                    PrixTotale += data[i].prixTotal * 1;
                     ligne += '<tr>\n\
                         <td><img class="image" src="images\\' + data[i].photo + '" width="50" height="50" ></td>\n\
                         <td>' + data[i].nomPlat + '</td>\n\
@@ -110,8 +112,8 @@ $(document).ready(function () {
             })
         }
     })
-    
-        $("#quantite").keyup(function () {
+
+    $("#quantite").keyup(function () {
         var quantite = $(this);
         if (isNaN(quantite.val())) {
             alert("S'il vous plaît entrer une Quantite valide");
@@ -124,19 +126,26 @@ $(document).ready(function () {
 
 
     $("#commandeBtn").on("click", function () {
-        $.ajax({
-            url: DOMAIN + "/includes/process.php",
-            method: "POST",
-            data: {ajouterCommande: 1},
-            success: function (data) {
-                if (data == "COMMANDE_ADDED") {
-                    alert("Votre commande a été effectué avec succès restez à l'écoute !");
-                    window.location.href = "";
-                } else {
-                    alert(data);
-                }
+        //alert(PrixTotale);
+        if (confirm("Êtes-vous sûr de votre adresse?!")) {
+            if (PrixTotale <= 150) {
+                $.ajax({
+                    url: DOMAIN + "/includes/process.php",
+                    method: "POST",
+                    data: {ajouterCommande: 1},
+                    success: function (data) {
+                        if (data == "COMMANDE_ADDED") {
+                            alert("Votre commande a été effectué avec succès restez à l'écoute !");
+                            window.location.href = "";
+                        } else if (data == "EMPTY_CART") {
+                            alert("Votre panier est vide! Essayez après le remplir..");
+                        }
+                    }
+                })
+            } else {
+                alert("Vous avez demandé beaucoup de plas !! Vous ne pouvez pas effectuer sur réception, Vous devez payer d'avance! Est Merci!");
             }
-        })
+        }
     })
 
     //Fill Historique
@@ -152,6 +161,13 @@ $(document).ready(function () {
         })
     }
 
+
+    //Fill Information For PayPal Payment
+    $("body").delegate(".paypal", "click", function () {
+        //alert(PrixTotale);
+        $("#montant").val(PrixTotale);
+        //alert($("#montant").val());
+    })
 
 
 });

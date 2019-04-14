@@ -73,14 +73,14 @@ and open the template in the editor.
 
 
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" style="margin-left: 355px" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item "><a href="index.php" class="nav-link">Accueil</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link">Accueil</a></li>
                         <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
                         <li class="nav-item active"><a class="nav-link" href="panier.php">Panier</a></li>
                         <li class="nav-item"><a href="about.php" class="nav-link">A Propos</a></li>
@@ -91,7 +91,7 @@ and open the template in the editor.
                             <?php
                         } else {
                             ?>
-                            <li class="nav-item" style="margin-left:370px;"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
+                            <li class="nav-item"><a href="logOut.php" class="nav-link" id="logoutItem" name="logoutItem" >Logout</a></li>
                         <?php } ?> 
 
                     </ul>
@@ -215,7 +215,7 @@ and open the template in the editor.
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <button id="commandeBtn" class="btn btn-primary py-3 px-5">Commander</button>
+                            <a href="clientspace.php" class="btn btn-primary py-3 px-5">Commander</a>
                         </div>
                     </div>
                 </div>
@@ -314,7 +314,7 @@ and open the template in the editor.
 
         <?php
         //Profil Form
-        include_once("./models/update_quantite.php");
+        include_once("./modals/update_quantite.php");
         ?>
     </body>
 </html>

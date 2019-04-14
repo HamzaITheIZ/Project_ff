@@ -1,9 +1,10 @@
 <?php
-
 include_once("../database/constants.php");
 include_once("manage.php");
 
-$user = $_SESSION["id"];
+if (isset($_SESSION["id"])) {
+    $user = $_SESSION["id"];
+}
 
 //Delete Panier Item
 if (isset($_POST["deletePanier"])) {
@@ -26,7 +27,7 @@ if (isset($_POST["quantite"])) {
     $id = $_POST["id"];
     $quantite = $_POST["quantite"];
     $prixTotale = $_POST["prix"];
-    $result = $m->update_record("panier", ["id" => $id], ["quantite" => $quantite , "prixTotal" => $prixTotale]);
+    $result = $m->update_record("panier", ["id" => $id], ["quantite" => $quantite, "prixTotal" => $prixTotale]);
     echo $result;
 }
 
@@ -55,6 +56,116 @@ if (isset($_POST["fillCommande"])) {
         }
         exit();
     }
+}
+
+//Fill Hot Meals
+if (isset($_POST["fillPlas"])) {
+    $m = new Manage();
+    $result = $m->fillAnyRecord("plat");
+    $rows = $result["rows"];
+    if (count($rows) > 0) {
+        $n = 0;
+        ?>
+        <div class="row no-gutters d-flex">
+            <?php
+            foreach ($rows as $row) {
+                $n++;
+                if ($n <= 3) {
+                    ?>
+                    <div class="col-lg-4 d-flex">
+                        <div class="services-wrap d-flex">
+                            <a href="#" class="img" style="background-image: url(images/<?php echo $row["photo"]; ?>);"></a>
+                            <div class="text p-4">
+                                <h3><?php echo $row["nom"]; ?></h3>
+                                <p><?php echo $row["description"]; ?></p>
+                                <p class="price"><span><?php echo $row["prix"]; ?> dhs</span> <a href="#" class="ml-2 btn btn-white btn-outline-white addToCart" indice="<?php echo $row["id"]; ?>">Ajouter au panier</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="col-lg-4 d-flex">
+                        <div class="services-wrap d-flex">
+                            <a href="#" class="img order-lg-last" style="background-image: url(images/<?php echo $row["photo"]; ?>);"></a>
+                            <div class="text p-4">
+                                <h3><?php echo $row["nom"]; ?></h3>
+                                <p><?php echo $row["description"]; ?></p>
+                                <p class="price"><span><?php echo $row["prix"]; ?> dhs</span> <a href="#" class="ml-2 btn btn-white btn-outline-white addToCart" indice="<?php echo $row["id"]; ?>">Ajouter au panier</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+        <?php
+        exit();
+    }
+}
+
+
+//----------------Stat------------------
+//Plat Stat
+if (isset($_POST["statPlat"])) {
+    $obj = new Manage();
+    $row = $obj->getAllStat("plat");
+
+    echo $row["Stat"];
+
+    exit();
+}
+//Brand Stat
+if (isset($_POST["statClient"])) {
+    $obj = new Manage();
+    $row = $obj->getAllStat("client");
+
+    echo $row["Stat"];
+
+    exit();
+}
+//category Stat
+if (isset($_POST["statEmploye"])) {
+    $obj = new Manage();
+    $row = $obj->getAllStat("employe");
+
+    echo $row["Stat"];
+
+    exit();
+}
+//Command Stat
+if (isset($_POST["statCommand"])) {
+    $obj = new Manage();
+    $row = $obj->getAllStat("commande");
+
+    echo $row["Stat"];
+
+    exit();
+}
+
+//For Edit Profile
+if (isset($_POST["password"]) AND isset($_POST["passwordsec"])) {
+    $user = new Manage();
+    $result = $user->profilEdit($_POST["usernamen"], $_POST["password"], $_POST["passwordnew"], $_POST["id"]);
+    echo $result;
+    exit();
+}
+
+//Update Infrmations
+if (isset($_POST["nomcomplet"])) {
+    $m = new Manage();
+    $id = $_POST["id"];
+    $result = $m->update_record("client", ["id" => $id], ["nom" => $_POST["nomcomplet"], "adresse" => $_POST["adresse"], "telephone" => $_POST["telephone"]]);
+    echo $result;
+}
+
+//Getting Information
+if (isset($_POST["consulterInfo"])) {
+    $m = new Manage();
+    $result = $m->getSingleRecord("client", $_POST["id"]);
+    echo json_encode($result);
+    exit();
 }
 
 ?>

@@ -11,7 +11,7 @@ include 'connexion/Connexion.php';
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Pizza - Free Bootstrap 4 Template by Colorlib</title>
+        <title>Contact</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,14 +47,14 @@ include 'connexion/Connexion.php';
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="index.php" class="nav-link">Accueil</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link">Accueil</a></li>
                         <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
                         <li class="nav-item"><a class="nav-link" href="panier.php">Panier</a></li>
                         <li class="nav-item"><a href="about.php" class="nav-link">A Propos</a></li>
-                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>     
+                        <li class="nav-item active"><a href="contact.php" class="nav-link">Contact</a></li>     
                         <?php if (empty($_SESSION['email'])) {
                             ?>
-                            <li class="nav-item"><a href="login.php" class="nav-link" id="loginItem" name="loginItem" >Login</a></li>
+                            <li class="nav-item"><a href="login.php" class="nav-link btn btn-primary p-3 px-xl-4 py-xl-3" id="loginItem" name="loginItem" >Login</a></li>
                             <?php
                         } else {
                             ?>
