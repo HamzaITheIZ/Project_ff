@@ -3,6 +3,12 @@ session_start();
 
 include 'connexion/Connexion.php';
 
+$obj = new Connexion();
+
+if (!isset($_SESSION['email'])) {
+    header('Location:login.php');
+}
+
 //if($_SESSION['email'] == '')
 //    header("Location:login.php");
 //echo "email is  " . $_SESSION["email"] . ".<br>";
@@ -62,19 +68,9 @@ and open the template in the editor.
 
     </head>
     <body>
-        <?php
-        $obj = new Connexion();
-
-        if (empty($_SESSION['email'])) {
-
-            header('Location:login.php');
-        }
-        ?>
-
-
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
+                <a class="navbar-brand" href="index.php"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>

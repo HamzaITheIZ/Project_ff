@@ -11,7 +11,15 @@
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" value="<?php echo $_SESSION["id"];?>"/>
                         <label class="h5">Nom d'Utilisateur</label>
-                        <input type="text" name="usernamen" class="form-control" id="usernamen" value="<?php echo $_SESSION["user"] ?>" placeholder="Entrer Votre Nom">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="text" name="usernamen" class="form-control" id="usernamen" value="<?php echo $_SESSION["user"] ?>" placeholder="Entrer Votre Nom"> 
+                            </div>  
+                            <div class="col-md-4">
+                                <br>
+                                <a href="#" class="edit_name">Modifier</a>
+                            </div>
+                        </div>
                         <small id="pu_error" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">

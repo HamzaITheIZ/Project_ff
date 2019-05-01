@@ -35,7 +35,7 @@ if (isset($_POST['logoutItem'])) {
         <link rel="stylesheet" href="css/bootstrap-datepicker.css">
         <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="css/flaticon.css">
         <link rel="stylesheet" href="css/icomoon.css">
         <link rel="stylesheet" href="css/style.css">
@@ -46,7 +46,7 @@ if (isset($_POST['logoutItem'])) {
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
+                <a class="navbar-brand" href="index.php"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
@@ -54,9 +54,9 @@ if (isset($_POST['logoutItem'])) {
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active"><a href="index.php" class="nav-link">Accueil</a></li>
                         <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="panier.php">Panier</a></li>
                         <li class="nav-item"><a href="about.php" class="nav-link">A Propos</a></li>
-                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>     
+                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li> 
+                        <li class="nav-item"><a class="nav-link btn btn-primary p-3 px-xl-4 py-xl-3" href="panier.php"><i class="fas fa-shopping-cart"></i>Panier</a></li>
                         <?php if (empty($_SESSION['email'])) {
                             ?>
                             <li class="nav-item"><a href="login.php" class="nav-link" id="loginItem" name="loginItem" >Login</a></li>
@@ -72,62 +72,61 @@ if (isset($_POST['logoutItem'])) {
         </nav>
         <!-- END nav -->
 
-        <section class="home-slider owl-carousel img" style="background-image: url(images/bg_1.jpg);">
-            <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
-                <div class="overlay"></div>
-                <div class="container" id="bienvenue">
-                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+        <div class="container-wrap" id="sliderplats">
+            <section class="home-slider owl-carousel img" style="background-image: url(images/bg_1.jpg);">
+                <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+                    <div class="overlay"></div>
+                    <div class="container" id="bienvenue">
+                        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
-                        <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                            <span class="subheading">Bienvenue</span>
-                            <h1 class="mb-4">Bienvenue au NetEat restaurant</h1>
-                            <p class="mb-4 mb-md-5">Merci de visiter notre site Web. Vous pouvez demander votre nourriture sur le site ou profiter de visiter le restaurant.</p>
-                            <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Créé Une Compte</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Inscrire</a></p>
+                            <div class="col-md-7 col-sm-12 text-center ftco-animate">
+                                <span class="subheading">Bienvenue</span>
+                                <h1 class="mb-4">Bienvenue au NetEat restaurant</h1>
+                                <p class="mb-4 mb-md-5">Merci de visiter notre site Web. Vous pouvez demander votre nourriture sur le site ou profiter de visiter le restaurant.</p>
+                                <p><a href="signup.php" class="btn btn-primary p-3 px-xl-4 py-xl-3">Créé Une Compte</a> <a href="login.php" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Inscrire</a></p>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="slider-item">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                <div class="slider-item">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row slider-text align-items-center" data-scrollax-parent="true">
 
-                        <div class="col-md-6 col-sm-12 ftco-animate">
-                            <span class="subheading">NetEat Format</span>
-                            <h1 class="mb-4">Recette spéciale</h1>
-                            <p class="mb-4 mb-md-5">Meilleure Pizza que vous pouvez voir.</p>
-                            <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-                        </div>
-                        <div class="col-md-6 ftco-animate">
-                            <img src="images/bg_2.png" class="img-fluid" alt="">
-                        </div>
+                            <div class="col-md-6 col-sm-12 ftco-animate">
+                                <span class="subheading">Burger NetEat Forme</span>
+                                <h1 class="mb-4">Recette spéciale</h1>
+                                <p class="mb-4 mb-md-5">Meilleure Burger que vous pouvez voir.</p>
+                                <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3 addToCart" indice="6">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                            </div>
+                            <div class="col-md-6 ftco-animate">
+                                <img src="images/burger-2.jpg" class="img-fluid" alt="">
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="slider-item">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="row slider-text align-items-center" data-scrollax-parent="true">
 
-            <div class="slider-item">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                            <div class="col-md-6 col-sm-12 order-md-last ftco-animate">
+                                <span class="subheading">Pasta NetEat Forme</span>
+                                <h1 class="mb-4">Apéritifs apéritifs</h1>
+                                <p class="mb-4 mb-md-5">Des ingrédients naturels rien que pour votre santé.</p>
+                                <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3 addToCart" indice="13">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                            </div>
+                            <div class="col-md-6 ftco-animate">
+                                <img src="images/pasta-3.jpg" class="img-fluid" alt="">
+                            </div>
 
-                        <div class="col-md-6 col-sm-12 order-md-last ftco-animate">
-                            <span class="subheading">NetEat Simple Cake</span>
-                            <h1 class="mb-4">Apéritifs apéritifs</h1>
-                            <p class="mb-4 mb-md-5">Des ingrédients naturels rien que pour votre santé.</p>
-                            <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
                         </div>
-                        <div class="col-md-6 ftco-animate">
-                            <img src="images/cake.png" class="img-fluid" alt="">
-                        </div>
-
                     </div>
                 </div>
-            </div>
-
-
-        </section>
+            </section>
+        </div>
 
 
         <section class="ftco-about d-md-flex">

@@ -1,8 +1,8 @@
 <?php
-
 session_start();
-if (session_destroy()) {
-    header("Location: index.php");
-    exit();
+
+if (isset($_SESSION["id"])) {
+    session_destroy();
 }
+header("Location: index.php");
 ?>

@@ -47,15 +47,15 @@ include 'connexion/Connexion.php';
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
+                <a class="navbar-brand" href="index.php"><span class="flaticon-pizza-1 mr-1"></span>HY's<br><small>NetEat</small></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="index.php" class="nav-link">Accueil</a></li>
+                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>   
                         <li class="nav-item"><a class="nav-link" href="panier.php">Panier</a></li>
-                        <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>     
                         <?php if (empty($_SESSION['email'])) {
                             ?>
                             <li class="nav-item"><a href="login.php" class="nav-link btn btn-primary p-3 px-xl-4 py-xl-3" id="loginItem" name="loginItem" >Login</a></li>

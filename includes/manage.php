@@ -18,6 +18,8 @@ class Manage {
             $sql = "SELECT C.id , COUNT(LC.nomPlat) AS 'Plas' , C.dateCommande , C.montantTotale from commande C INNER JOIN ligne_commande LC ON C.id = LC.commande WHERE C.clientCommande = " . $_SESSION["id"] . " GROUP BY C.id";
         } else if ($table == "plat") {
             $sql = "SELECT P.*,COUNT(P.id) AS 'nombreCommande' FROM plat P INNER JOIN ligne_commande LC on P.nom = LC.nomPlat GROUP BY P.id ORDER BY COUNT(P.id) DESC LIMIT 6";
+        } else if ($table == "sliderplats") {
+            $sql = "SELECT * FROM `plat` WHERE nom LIKE '%NetEat%'";
         } else {
             $sql = "SELECT * FROM " . $table . " ";
         }
@@ -161,7 +163,21 @@ class Manage {
         }
     }
 
+    public function editProfilName($username, $user) {
+        $pre_stmt = $this->con->prepare("UPDATE client SET username = ? WHERE id = ?");
+        $pre_stmt->bind_param("si", $username, $user);
+        $result = $pre_stmt->execute() or die($this->con->error);
+        if ($result) {
+            $_SESSION["user"] = $username;
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }
+
 //$m = new Manage();
+//echo $m->editProfilName("Meryem Doll", 7) ;
 //print_r($m->getSingleRecord("client",7));
 ?>

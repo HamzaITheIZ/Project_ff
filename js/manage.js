@@ -1,6 +1,21 @@
 $(document).ready(function () {
 
     var DOMAIN = "http://localhost/project_ff";
+
+    //Fill Slider
+    /*fillSliderMeals();
+     function fillSliderMeals() {
+     $.ajax({
+     url: DOMAIN + "/includes/process.php",
+     method: "POST",
+     data: {fillSlider: 1},
+     success: function (data) {
+     //alert(data);
+     $("#sliderplats").html(data);
+     }
+     })
+     }*/
+
 //Fetch Product Stat
     fetch_Product_Stat();
     function fetch_Product_Stat() {
@@ -215,4 +230,35 @@ $(document).ready(function () {
         }
     })
 
+    //Edit Name
+    $("body").delegate(".edit_name", "click", function () {
+
+        var statusn = false;
+        var name = $("#usernamen");
+        if (name.val() == "" || name.val().length < 6) {
+            name.addClass("border-danger");
+            $("#pu_error").html("<span class='text-danger'>S'il vous plaît entrer le nom et le nom doit être plus de 6 caractères</span>");
+            statusn = false;
+        } else {
+            name.removeClass("border-danger");
+            $("#pu_error").html("");
+            statusn = true;
+        }
+        var username = name.val();
+        if (statusn == true) {
+            $.ajax({
+                url: DOMAIN + "/includes/process.php",
+                method: "POST",
+                data: {editName: 1, name: username},
+                success: function (data) {
+                    if (data == 1) {
+                        alert("Votre Nom est bien Modifier!");
+                        window.location.href = "";
+                    } else {
+                        alert("Il ya des errors dans votre entries!");
+                    }
+                }
+            })
+        }
+    })
 })

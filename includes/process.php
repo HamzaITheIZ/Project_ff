@@ -105,6 +105,69 @@ if (isset($_POST["fillPlas"])) {
     }
 }
 
+//Fill Slider Meals
+/* if (isset($_POST["fillSlider"])) {
+  $m = new Manage();
+  $result = $m->fillAnyRecord("sliderplats");
+  $rows = $result["rows"];
+  ?>
+  <section class="home-slider owl-carousel img" style="background-image: url(images/bg_1.jpg);">
+  <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+  <div class="overlay"></div>
+  <div class="container" id="bienvenue">
+  <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+  <div class="col-md-7 col-sm-12 text-center ftco-animate">
+  <span class="subheading">Bienvenue</span>
+  <h1 class="mb-4">Bienvenue au NetEat restaurant</h1>
+  <p class="mb-4 mb-md-5">Merci de visiter notre site Web. Vous pouvez demander votre nourriture sur le site ou profiter de visiter le restaurant.</p>
+  <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Créé Une Compte</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Inscrire</a></p>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  <?php
+  if (count($rows) > 0) {
+  ?>
+  <?php
+  foreach ($rows as $row) {
+  ?>
+  <div class="slider-item">
+  <div class="overlay"></div>
+  <div class="container">
+  <div class="row slider-text align-items-center" data-scrollax-parent="true">
+
+  <div class="col-md-6 col-sm-12 ftco-animate">
+  <span class="subheading"><?php echo $row["nom"]; ?></span>
+  <h1 class="mb-4">Recette spéciale</h1>
+  <p class="mb-4 mb-md-5"><?php echo $row["description"]; ?></p>
+  <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3 addToCart" indice="<?php echo $row["id"]; ?>">Order Now</a> <a href="menu.php" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+  </div>
+  <div class="col-md-6 ftco-animate">
+  <img src="images/<?php echo $row["photo"]; ?>" class="img-fluid" alt="">
+  </div>
+
+  </div>
+  </div>
+  </div>
+  <?php
+  }
+  ?>
+  </section>
+  <?php
+  exit();
+  }
+  } */
+
+//For Edit Name Only
+if (isset($_POST["editName"])) {
+    $u = new Manage();
+    $name = $_POST["name"];
+    $result = $u->editProfilName($name, $user);
+    echo $result;
+}
+
 
 //----------------Stat------------------
 //Plat Stat
@@ -167,5 +230,4 @@ if (isset($_POST["consulterInfo"])) {
     echo json_encode($result);
     exit();
 }
-
 ?>
